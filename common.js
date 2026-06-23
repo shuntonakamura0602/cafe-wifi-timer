@@ -10,6 +10,7 @@ const TIMER_STATUS = Object.freeze({
 });
 
 const NOTIFICATION_OFFSETS = Object.freeze([5, 1, 0]);
+const NOTIFICATION_TOLERANCE_MS = 999;
 
 const DEFAULT_TIMER_STATE = Object.freeze({
   status: TIMER_STATUS.IDLE,

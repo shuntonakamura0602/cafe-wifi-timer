@@ -151,9 +151,8 @@ async function syncAll() {
 
 async function sendDueNotifications(timer, now) {
   const remainingMs = getRemainingMs(timer, now);
-  const remainingMinutes = remainingMs / 60000;
   const sent = new Set(timer.notifiedOffsets);
-  const dueOffset = getDueNotificationOffset(remainingMs, remainingMinutes, sent);
+  const dueOffset = getDueNotificationOffset(remainingMs, sent);
 
   if (dueOffset === null) {
     return timer;
@@ -166,13 +165,17 @@ async function sendDueNotifications(timer, now) {
   return nextTimer;
 }
 
-function getDueNotificationOffset(remainingMs, remainingMinutes, sent) {
+function getDueNotificationOffset(remainingMs, sent) {
   if (remainingMs <= 0) {
     return sent.has(0) ? null : 0;
   }
 
   const dueOffsets = NOTIFICATION_OFFSETS
-    .filter((offset) => offset > 0 && !sent.has(offset) && remainingMinutes <= offset)
+    .filter((offset) => {
+      return offset > 0
+        && !sent.has(offset)
+        && remainingMs <= offset * 60000 + NOTIFICATION_TOLERANCE_MS;
+    })
     .sort((a, b) => a - b);
 
   return dueOffsets[0] ?? null;
@@ -214,7 +217,7 @@ async function updateAlarm(timer, now) {
 
   const futureOffsets = NOTIFICATION_OFFSETS
     .filter((offset) => !timer.notifiedOffsets.includes(offset))
-    .map((offset) => timer.endAt - offset * 60000)
+    .map((offset) => timer.endAt - offset * 60000 - (offset > 0 ? NOTIFICATION_TOLERANCE_MS : 0))
     .filter((timestamp) => timestamp > now)
     .sort((a, b) => a - b);
 
