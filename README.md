@@ -2,7 +2,7 @@
 
 カフェWi-Fiの接続終了時刻を忘れないためのChrome拡張機能です。Manifest V3、Vanilla HTML/CSS/JavaScriptのみで構成しています。
 
-収益性と公開コストを理由に開発停止
+# 収益性と公開コストを理由に開発停止
 
 ## 機能
 
