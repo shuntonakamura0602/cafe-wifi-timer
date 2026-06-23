@@ -1,17 +1,14 @@
-const cafeSelect = document.querySelector("#cafeSelect");
 const timerCafeName = document.querySelector("#timerCafeName");
 const timerStatus = document.querySelector("#timerStatus");
 const remainingTime = document.querySelector("#remainingTime");
 const endAt = document.querySelector("#endAt");
 const duration = document.querySelector("#duration");
 const customMinutes = document.querySelector("#customMinutes");
-const startCafeTimer = document.querySelector("#startCafeTimer");
 const startCustomTimer = document.querySelector("#startCustomTimer");
 const stopTimerButton = document.querySelector("#stopTimer");
 const resetTimerButton = document.querySelector("#resetTimer");
 const message = document.querySelector("#message");
 
-let cafes = [];
 let timer = { ...DEFAULT_TIMER_STATE };
 let renderInterval = null;
 
@@ -24,7 +21,6 @@ async function init() {
 }
 
 function bindEvents() {
-  startCafeTimer.addEventListener("click", startSelectedCafeTimer);
   startCustomTimer.addEventListener("click", startCustomMinuteTimer);
   stopTimerButton.addEventListener("click", sendStop);
   resetTimerButton.addEventListener("click", sendReset);
@@ -36,31 +32,8 @@ async function refreshState() {
     showMessage(response?.error || "状態を取得できませんでした。");
     return;
   }
-  cafes = response.cafes;
   timer = normalizeTimerState(response.timer);
-  renderCafeOptions();
   renderTimer();
-}
-
-function renderCafeOptions() {
-  cafeSelect.textContent = "";
-
-  if (cafes.length === 0) {
-    const option = document.createElement("option");
-    option.value = "";
-    option.textContent = "登録カフェがありません";
-    cafeSelect.append(option);
-    startCafeTimer.disabled = true;
-    return;
-  }
-
-  startCafeTimer.disabled = false;
-  for (const cafe of cafes) {
-    const option = document.createElement("option");
-    option.value = cafe.id;
-    option.textContent = `${cafe.name}（${cafe.durationMinutes}分）`;
-    cafeSelect.append(option);
-  }
 }
 
 function renderTimer() {
@@ -78,20 +51,6 @@ function renderTimer() {
   } else {
     timerStatus.textContent = "待機中";
   }
-}
-
-async function startSelectedCafeTimer() {
-  const cafe = cafes.find((item) => item.id === cafeSelect.value);
-  if (!cafe) {
-    showMessage("カフェを選択してください。");
-    return;
-  }
-
-  await startTimer({
-    cafeId: cafe.id,
-    cafeName: cafe.name,
-    durationMinutes: cafe.durationMinutes
-  });
 }
 
 async function startCustomMinuteTimer() {
