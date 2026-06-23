@@ -9,7 +9,7 @@ const TIMER_STATUS = Object.freeze({
   FINISHED: "finished"
 });
 
-const NOTIFICATION_OFFSETS = Object.freeze([10, 5, 1, 0]);
+const NOTIFICATION_OFFSETS = Object.freeze([5, 1, 0]);
 
 const DEFAULT_TIMER_STATE = Object.freeze({
   status: TIMER_STATUS.IDLE,
