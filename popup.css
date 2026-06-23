@@ -30,8 +30,7 @@ select {
   font: inherit;
 }
 
-button,
-.icon-link {
+button {
   min-height: 36px;
   border: 1px solid var(--accent);
   border-radius: 6px;
@@ -42,8 +41,7 @@ button,
   text-decoration: none;
 }
 
-button:hover,
-.icon-link:hover {
+button:hover {
   background: var(--accent-dark);
 }
 
@@ -91,14 +89,6 @@ h1 {
 
 h2 {
   font-size: 15px;
-}
-
-.icon-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 58px;
-  padding: 0 10px;
 }
 
 .timer-panel,
