@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Cafe WiFi Timer">
+  <rect width="128" height="128" rx="18" fill="#2f6f5e"/>
+  <path d="M32 72a32 32 0 0 1 64 0" fill="none" stroke="#ffffff" stroke-width="10" stroke-linecap="round"/>
+  <path d="M47 74a17 17 0 0 1 34 0" fill="none" stroke="#ffffff" stroke-width="9" stroke-linecap="round"/>
+  <circle cx="64" cy="82" r="7" fill="#ffffff"/>
+  <path d="M28 98h72" stroke="#f5d06f" stroke-width="10" stroke-linecap="round"/>
+  <path d="M64 32v18l13 8" fill="none" stroke="#f5d06f" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

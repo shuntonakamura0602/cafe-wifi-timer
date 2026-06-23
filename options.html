@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cafe WiFi Timer 設定</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <main class="page">
+    <header class="page-header">
+      <div>
+        <p class="eyebrow">Cafe WiFi Timer</p>
+        <h1>カフェ設定</h1>
+      </div>
+      <a href="popup.html" class="back-link">ポップアップ</a>
+    </header>
+
+    <section class="layout">
+      <form id="cafeForm" class="panel" autocomplete="off">
+        <h2 id="formTitle">新規登録</h2>
+        <input id="cafeId" type="hidden">
+
+        <label for="cafeName">カフェ名</label>
+        <input id="cafeName" type="text" required maxlength="60" placeholder="例: Sample Cafe">
+
+        <label for="durationMinutes">接続時間（分）</label>
+        <input id="durationMinutes" type="number" min="1" max="1440" step="1" required value="60" inputmode="numeric">
+
+        <label for="loginUrl">ログインページURL（任意）</label>
+        <input id="loginUrl" type="url" placeholder="https://example.com/login">
+
+        <div class="form-actions">
+          <button id="saveCafe" type="submit">保存</button>
+          <button id="cancelEdit" type="button" class="secondary">キャンセル</button>
+        </div>
+        <p id="formMessage" class="message" role="status"></p>
+      </form>
+
+      <section class="panel">
+        <div class="section-heading">
+          <h2>登録済みカフェ</h2>
+          <span id="cafeCount" class="count">0件</span>
+        </div>
+        <div id="cafeList" class="cafe-list" aria-live="polite"></div>
+      </section>
+    </section>
+  </main>
+  <script src="common.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>

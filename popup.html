@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cafe WiFi Timer</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <main class="popup-shell">
+    <header class="header">
+      <div>
+        <p class="eyebrow">Cafe WiFi Timer</p>
+        <h1>Wi-Fiタイマー</h1>
+      </div>
+      <a class="icon-link" href="options.html" aria-label="カフェ設定を開く" title="設定">設定</a>
+    </header>
+
+    <section class="timer-panel" aria-live="polite">
+      <div class="timer-meta">
+        <span id="timerCafeName">未開始</span>
+        <span id="timerStatus">待機中</span>
+      </div>
+      <div id="remainingTime" class="remaining">--:--</div>
+      <dl class="timer-details">
+        <div>
+          <dt>終了予定</dt>
+          <dd id="endAt">-</dd>
+        </div>
+        <div>
+          <dt>接続時間</dt>
+          <dd id="duration">-</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section class="form-section" aria-labelledby="startHeading">
+      <h2 id="startHeading">タイマー開始</h2>
+      <label for="cafeSelect">登録カフェ</label>
+      <select id="cafeSelect"></select>
+      <button id="startCafeTimer" type="button">選択したカフェで開始</button>
+    </section>
+
+    <section class="form-section" aria-labelledby="customHeading">
+      <h2 id="customHeading">任意タイマー</h2>
+      <div class="inline-fields">
+        <label for="customMinutes">分数</label>
+        <input id="customMinutes" type="number" min="1" max="1440" step="1" value="60" inputmode="numeric">
+      </div>
+      <button id="startCustomTimer" type="button">任意の分数で開始</button>
+    </section>
+
+    <section class="actions" aria-label="タイマー操作">
+      <button id="stopTimer" type="button" class="secondary">停止</button>
+      <button id="resetTimer" type="button" class="danger">リセット</button>
+    </section>
+
+    <p id="message" class="message" role="status"></p>
+  </main>
+  <script src="common.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
